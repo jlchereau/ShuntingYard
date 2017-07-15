@@ -1,0 +1,148 @@
+<html>
+<head>
+    <title>tree</title>
+    <script src="parser.js"></script>
+</head>
+
+<body onload="testParser()">
+
+<script>
+
+  function createTreeNode(x, y, val, color) {
+    var node = document.createElement("div");
+    node.style.position = "absolute";
+    node.style.left = "" + x;
+    node.style.top = "" + y;
+
+    node.style.border= "solid";
+    node.style.borderWidth= 1;
+    node.style.backgroundColor= color;
+
+    node.appendChild(document.createTextNode(val));
+
+    return node;
+  };
+
+  var yStep = 24;
+  var width = 800;
+  var height = 600;
+
+  var RED = "#ffc0c0";
+  var BLUE = "#c0c0ff";
+
+  container = document.createElement("div");
+  container.style.width = width;
+  container.style.height = height;
+  container.style.border = "solid";
+
+  document.body.appendChild(container);
+
+  var svgNS = "http://www.w3.org/2000/svg";
+
+  function renderLink(x1, y1, x2, y2)
+  {
+    var left = Math.min(x1,x2);
+    var top = Math.min(y1,y2);
+
+    var width = 1+Math.abs(x2-x1);
+    var height = 1+Math.abs(y2-y1);
+
+    var svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("x", left);
+    svg.setAttribute("y",  top);
+    svg.setAttribute("width", width );
+    svg.setAttribute("height", height );
+
+    var line = document.createElementNS(svgNS,"line");
+
+    line.setAttribute("x1", (x1 - left) );
+    line.setAttribute("x2", (x2 - left) );
+    line.setAttribute("y1", (y1 - top) );
+    line.setAttribute("y2", (y2 - top) );
+    line.setAttribute("stroke-width",  "1");
+    line.setAttribute("stroke",  "black");
+    svg.appendChild(line);
+
+    var div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.left = left;
+    div.style.top = top;
+    div.style.width = width;
+    div.style.height = height;
+
+    div.appendChild(svg);
+    container.appendChild(div);
+  }
+
+  function getHeight(dom) {
+    var h = dom.offsetHeight;
+    return h;
+  }
+
+  function getWidth(dom) {
+    var w = dom.offsetWidth;
+    return w;
+  }
+
+  function renderTree(x, y, node, width, height)
+  {
+    if(height < 1.5*yStep)
+      height = 1.5*yStep;
+
+    var val;
+    if(node.op) {
+      val = node.op;
+      color = BLUE;
+    }
+    else
+    if(node.value) {
+      val = node.value;
+      color = RED;
+    }
+    else
+      val = "?";
+
+    var dom = createTreeNode(x, y, val, color);
+    container.appendChild(dom);
+
+    var w = getWidth(dom);
+    var h = getHeight(dom);
+
+    var nx, ny;
+
+    var child;
+
+    if(node.left) {
+      nx = x - width/2;
+      ny = y+height;
+      var child = renderTree(nx, ny, node.left, width/2, height/2);
+      renderLink(x+w/2, y+h, nx+getWidth(child)/2, ny);
+    }
+
+    if(node.right) {
+      nx = x + width/2;
+      ny = y+height;
+
+      child = renderTree(nx, ny, node.right, width/2, height/2);
+      renderLink(x+w/2, y+h, nx+getWidth(child)/2, ny);
+    }
+    return dom;
+  }
+
+  var root;
+
+  function testParser()
+  {
+    var str = "sin(1)+2*5-5*(9+2)";
+
+    var exp = document.createElement("div");
+    exp.appendChild(document.createTextNode(str));
+    container.appendChild(exp);
+    var tree = parseString(str);
+    renderTree(width/2, 20, tree, width/2, 4*yStep);
+  }
+
+</script>
+
+</body>
+</html>
