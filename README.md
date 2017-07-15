@@ -69,15 +69,18 @@ and ```c*b*a```, ```(c*b)*a``` and ```(c*(b*a))``` would produce:
 
 Then the two trees become very easy to compare while still allowing easy calculations.
 
+In other words, the algorithm would only create subnodes for different operators based on precedence and association.
+
 ### Calculation
 
 The other option consists in providing values for ```a```, ```b``` and ```c``` in order to execute calculations
 on the expected and actual formulas and deem the actual answer correct if the results match.
 
 Note: What should we do with ```=```, and possibly comparison operators like ```>```?
-How do we make sure that ```E=E``` is not a valid answer for ```E=mc^2```?
+How do we make sure that ```E=E``` is not a valid answer for ```E=mc^2``` if we check for a result of ```true```?
 
-If we check the number of occurences of E, m and c then ```(a+b)*(a-b)``` is not a valid answer for ```a^2-b^2```,  which might be acceptable.
+We might prevent that by checking the number of occurences of E, m and c,
+but then ```(a+b)*(a-b)``` would not be a valid answer for ```a^2-b^2```, which might be acceptable.
 
 ## Sources
 
