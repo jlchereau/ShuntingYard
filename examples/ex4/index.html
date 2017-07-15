@@ -3,7 +3,9 @@
     <script src="app.js"></script>
     <script>
       var ms = new MathSolver();
-      console.log(ms.infixToPostfix("5 + 3 * 6 - ( 5 / 3 ) + 7"));
+      var pf = ms.infixToPostfix("5 + 3 * 6 - ( 5 / 3 ) + 7");
+      console.log(pf);
+      console.log(ms.solvePostfix(pf));
     </script>
 </head>
 <body></body>

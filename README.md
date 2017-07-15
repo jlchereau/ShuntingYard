@@ -115,3 +115,5 @@ but then ```(a+b)*(a-b)``` would not be a valid answer for ```a^2-b^2```, which 
    - http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
    - https://github.com/droptable/javascript-shunting-yard
    - https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm#JavaScript
+   - http://lisperator.net/blog/find-all-expressions-that-evaluate-to-some-value/
+   - https://gist.github.com/shalvah

@@ -27,7 +27,7 @@
         { latex: '2\\cdot\\sum_{n=0}^{\\infty}\\frac{1}{n+1}', length: 6 }
       ];
 
-      var tree = window.parse(SAMPLE[0].latex);
+      var tree = window.parseLatex(SAMPLE[0].latex);
       debugger;
       /*
        for (var i = 0, length = SAMPLE.length; i < length; i++) {
