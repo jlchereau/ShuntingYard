@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="shunt.js"></script>
+</head>
+<body>
+Source: https://github.com/droptable/javascript-shunting-yard
+<script>
+
+	var exp = '1+2*3/4^5%6',
+		res = Shunt.parse(exp); // Number(1.005859375);
+
+	// using a context for functions and constants
+	var ctx = new Shunt.Context();
+	ctx.def('abs');                                   // wraps `Math.abs`
+	// create a variable
+	ctx.def('foo', 1.5);                              // defines constant `foo`
+	// functions take parameters as you'd expect
+	ctx.def('bar', function(a, b) { return a * b; }); // defines function `bar`
+
+	var exp2 = 'foo + bar(2 + 4, abs(-1000))',
+		res2 = Shunt.parse(exp2, ctx); // Number(6001.5);
+
+</script>
+</body>
+</html>
