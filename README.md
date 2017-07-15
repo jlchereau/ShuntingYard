@@ -71,7 +71,7 @@ Then the two trees become very easy to compare while still allowing easy calcula
 
 In other words, the algorithm would only create subnodes for different operators based on precedence and association.
 
-### Calculation
+### Calculating
 
 The other option consists in providing values for ```a```, ```b``` and ```c``` in order to execute calculations
 on the expected and actual formulas and deem the actual answer correct if the results match.
@@ -92,3 +92,4 @@ but then ```(a+b)*(a-b)``` would not be a valid answer for ```a^2-b^2```, which 
    - http://rhyscitlema.com/algorithms/expression-parsing-algorithm/
    - https://ariya.io/2011/08/math-evaluator-in-javascript-part1
    - http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
+   - https://github.com/droptable/javascript-shunting-yard
