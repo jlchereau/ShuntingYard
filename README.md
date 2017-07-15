@@ -1,6 +1,6 @@
 # Shunting-Yard
 
-> DISCLAIMER: This project is entitled Shunting-Yard becuase it started there but this is not another implementation of the Shunting-Yard algorithm.
+> DISCLAIMER: This project is entitled Shunting-Yard because it started there but this is not another implementation of the Shunting-Yard algorithm.
 
 ## Objective
 
@@ -32,7 +32,7 @@ The algorithm offers no easy solution to compare ```a*b*c``` and ```c*b*a```.
    -- c
 ```
 
-```c*b*a```translates into an RPN of ```cb*a*``` or a binary tree of:
+```c*b*a``` translates into an RPN of ```cb*a*``` or a binary tree of:
            
 ```
 * --- * --- c
@@ -72,7 +72,12 @@ Then the two trees become very easy to compare while still allowing easy calcula
 ### Calculation
 
 The other option consists in providing values for ```a```, ```b``` and ```c``` in order to execute calculations
-on the expected and actual formulas deem the actual answer correct if the results match.
+on the expected and actual formulas and deem the actual answer correct if the results match.
+
+Note: What should we do with ```=```, and possibly comparison operators like ```>```?
+How do we make sure that ```E=E``` is not a valid answer for ```E=mc^2```?
+
+If we check the number of occurences of E, m and c then ```(a+b)*(a-b)``` is not a valid answer for ```a^2-b^2```,  which might be acceptable.
 
 ## Sources
 
