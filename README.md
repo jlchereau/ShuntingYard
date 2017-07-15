@@ -67,7 +67,28 @@ and ```c*b*a```, ```(c*b)*a``` and ```(c*(b*a))``` would produce:
    -- a
 ```
 
-Then the two trees become very easy to compare while still allowing easy calculations.
+The division would be handled as follows so as ```(a*b)/c``` and ```a*b/c``` to produce
+
+```
+* --- a
+   |
+   -- b
+   |
+   -- 1/c
+```
+
+The minus would be handled as follows so as ```a-b+c``` and ```(a-b)+c``` to produce
+
+```
++ --- a
+   |
+   -- -b
+   |
+   -- c
+```
+
+
+Then these trees become very easy to compare while still allowing easy calculations.
 
 In other words, the algorithm would only create subnodes for different operators based on precedence and association.
 
@@ -93,3 +114,4 @@ but then ```(a+b)*(a-b)``` would not be a valid answer for ```a^2-b^2```, which 
    - https://ariya.io/2011/08/math-evaluator-in-javascript-part1
    - http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
    - https://github.com/droptable/javascript-shunting-yard
+   - https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm#JavaScript
